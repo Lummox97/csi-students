@@ -1,0 +1,222 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T2A]{fontenc} %поддержка кириллицы
+\usepackage[utf8]{inputenc} %кодировка текста: koi8-r или utf8 в UNIX, cp1251 в Windows
+\usepackage[english,russian]{babel} 
+\usepackage[left=2cm,right=1.5cm,top=2cm,bottom=2cm]{geometry} 
+\usepackage{tabularx} 
+\usepackage{graphicx} 
+\usepackage{amsmath} %отображение математической нотации
+\usepackage{float}
+\usepackage{caption, subcaption} %подписи
+%\usepackage{array}
+%\usepackage{amsmath,booktabs}
+%\usepackage{tabu}
+\usepackage{indentfirst}%отступ вначале параграфа
+%\usepackage{pscyr} %???
+%\usepackage{natbib}
+%\usepackage{ragged2e} %для таблиц
+ 
+\captionsetup[table]{labelsep = endash, singlelinecheck=false}
+\captionsetup[figure]{name = Рисунок, labelformat=simple, labelsep = endash}
+
+\begin{document}
+
+\include{title}
+
+\paragraph{Цель работы:}Исследование точностных свойств систем управления.%*-без нумерации
+\paragraph{Исходные данные.} В таблице 1 приведены передаточная функция ОУ, характеристики задающих и возмущающих воздействий.
+\begin{table}[h!]
+	\caption{Исходные данные}
+	\renewcommand{\arraystretch}{1.8} %строки
+	%\renewcommand{\tabcolsep}{1cm} %столбцы
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline $W(s)$ & $g = A$ & $g = Vt$ & $g = at^2/2$ & Структура системы & $f_1$ & $f_2$ & Сигнал задания\\
+		\hline $\displaystyle{\frac{1.5}{0.5s + 1}}$ & 2 & 4t & $0.2t^2$ & a) & -0.5 & 1 & $0.5t + 2\cos{(0.1t)}$\\
+		\hline
+	\end{tabular}	
+\end{table} 
+
+\newpage
+\begin{center}
+\section{Исследование системы с астатизмом нулевого порядка}
+\end{center}
+\parЗадана замкнутая система, структурная схема которой представлена на рисунке 1, где $H(s) = k$, $W(s)=\displaystyle{\frac{1.5}{0.5s + 1}}$.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\linewidth]{cxema0.eps}
+	\caption{Структурная схема моделируемой системы}
+\end{figure}
+
+\subsection{Исследование стационарного режима работы: $g(t)=A$} 
+На рисунке 2 представлена структурная схема системы при входном воздействии \\$g=2$, представлены графики переходных процессов (рисунок 3) и переходные характеристики ошибок (рисунок 4) при различных значениях $k$. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{shema.png}
+	\caption{Структурная схема системы с астатизмом нулевого порядка}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{1vyh.eps}
+	\caption{Переходные характеристики системы для стационарного режима работы}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{1osh.eps}
+	\caption{Переходные характеристики для ошибки}
+\end{figure}
+Для статической системы при постоянном входном воздействии $g(t)=A$ предельное значение установившейся ошибки будет равно:
+\begin{equation}
+    \varepsilon = \lim_{s\to 0}s\frac{1}{1+H(s)W(s)}G(s) = \lim_{s\to0} s\frac{1}{1+ \displaystyle{\frac{1.5k}{0.5s+1}}}\cdot\frac{A}{s} = \lim_{s\to0} \frac{0.5sA+A}{0.5s+1.5k+1} = \frac{A}{1+1.5k}.
+\end{equation}
+Тогда при $k=1$: $\varepsilon = \displaystyle{\frac{2}{1+1*1.5}} = \frac{2}{2.5} = 0.8;$\\
+при $k=5$: $\varepsilon = \displaystyle{\frac{2}{1+5*1.5}} = \frac{2}{8.5} = 0.23535;$\\
+при $k=10$: $\varepsilon = \displaystyle{\frac{2}{1+10*1.5}} = \frac{2}{15} = 0.13333.$\\
+
+\subsection{Исследование режима движения с постоянной скоростью: \\$g(t)=Vt$} 
+На рисунке 5 представлена переходная характеристика системы при входном воздействии $g=4t$.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{12vyh.eps}
+	\caption{Переходные характеристики системы для движения с постоянной скоростью}
+\end{figure}
+Для статической системы при линейно нарастающем входном воздействии $g(t)=Vt$ имеем:
+\begin{equation}
+    \varepsilon = \lim_{s\to0} s\frac{1}{1+H(s)W(s)}G(s) = \lim_{s\to0} \frac{1}{1+\displaystyle{\frac{1.5k}{0.5s+1}}}\frac{V}{s} = \lim_{s\to0} \frac{V(0.5s+1)}{s(0.5s+1.5k+1)} = \infty.
+\end{equation}
+
+\newpage
+\begin{center}
+\section{Исследование системы с астатизмом первого порядка}
+\end{center}\par
+Структурная схема моделируемой системы представлена на рисунке 1, где $H(s) = \displaystyle{\frac{k}{s}},\\ W(s)=\displaystyle{\frac{1.5}{0.5s + 1}}$.
+
+\subsection{Исследование стационарного режима работы: $g(t)=A$} 
+На рисунке 6 представлена структурная схема системы при входном воздействии \\$g=4t$, представлены графики переходных процессов (рисунок 7) и переходные характеристики ошибок (рисунок 8) при различных значениях $k$ и при входном воздействии, равном 2. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{cxema2.png}
+	\caption{Структурная схема системы с астатизмом нулевого порядка}
+\end{figure}
+Для статической системы при постоянном входном воздействии $g(t)=A$ имеем:
+\begin{equation}
+    \varepsilon = \lim_{s\to0} s\frac{1}{1+H(s)W(s)}G(s) = \lim_{s\to0} \frac{1}{1+\displaystyle{\frac{W^*(s)}{s}}}A = \lim_{s\to0} \frac{As(2,5s+1)}{s(0.5s+1)+1.5k} = \frac{0}{1.5k} = 0.
+\end{equation}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{2vyh.eps}
+	\caption{Переходные характеристики системы для стационарного режима работы}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{2osh.eps}
+	\caption{Переходные характеристики для ошибки}
+\end{figure}
+
+\subsection{Исследование режима движения с постоянной скоростью: \\$g(t)=Vt$} 
+На рисунке 9 представлена переходная характеристика системы при входном воздействии $g=4t$, на рисунке 10  - переходные характеристики для ошибки.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{22vyh.eps}
+	\caption{Переходные характеристики системы для движения с постоянной скоростью}
+\end{figure}
+При линейно нарастающем воздействии $g(t)=Vt$ предельное значение установившейся ошибки будет равно:
+\begin{equation}
+    \varepsilon = \lim_{s\to 0}s\frac{1}{1+H(s)W(s)}G(s) = \lim_{s\to 0}\frac{s}{1 + \displaystyle{\frac{1.5k}{s(0.5s+1)}}}\frac{V}{s^2} = \lim_{s\to0} \frac{V(0.5s+1)}{s(0.5s+1)+1.5k}= \frac{V}{1.5k}.
+\end{equation}
+Тогда при $k=1$: $\varepsilon = \displaystyle{\frac{4}{1*1.5} = \frac{2}{3} \approx  2.667;}$\\
+при $k=5$: $\varepsilon = \displaystyle{\frac{4}{5*1.5} = \frac{2}{15} \approx  0.533;}$\\
+при $k=10$: $\varepsilon = \displaystyle{\frac{2}{10*3} = \frac{2}{30} \approx  0.267.}$
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\linewidth]{22osh.eps}
+	\caption{Переходные характеристики для ошибки}
+\end{figure}
+
+\subsection{Исследование режима движения с постоянным ускорением: \\$g(t)=at^2/2$} 
+На рисунке 11 представлена переходная характеристика системы при входном воздействии $g=0.2t^2$.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\linewidth]{23vyh.eps}
+	\caption{Переходные характеристики системы для движения с постоянным ускорением}
+\end{figure}
+
+\newpage
+\begin{center}
+\section{Исследование влияний внешних возмущений}
+\end{center}\par
+Структурная схема возмущённой системы при входном воздействии $g=1$ представлена на рисунке 12, также представлены графики переходных процессов (рисунок 13) и переходные характеристики ошибок (рисунок 14) при различных значениях $k$.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{cxema3.png}
+    \caption{Структурная схема системы при влиянии внешних возмущений}
+\end{figure}
+Функция ошибки слежения равна
+\begin{equation}
+e = \frac{g - W(s)f_1 - \displaystyle{\frac{1}{s}}W(s)f_2}{1 + \displaystyle{\frac{1}{s}}W(s)} = \frac{g - \displaystyle{\frac{1.5}{0.5s + 1}}f_1 - \displaystyle{\frac{1.5}{(0.5s + 1)s}}f_2}{1 + \displaystyle{\frac{1.5}{(0.5s + 1)s}}} = \frac{g(0.5s^2 + s) - 1.5sf_1 - 1.5f_2}{0.5s^2 + s + 1.5},
+\end{equation}
+тогда предельное значение установившейся ошибки при $g(t) = 1$
+\begin{equation}
+\varepsilon = \lim_{s \to 0} \frac{0.5s^2 + s - 1.5sf_1 - 3f_2}{0.5s^2 + s + 1.5} = \frac{-1/5f_2}{1.5} = -f_2.
+\end{equation}\par
+Положим, что $f_2=0$, тогда предельное значение ошибки при заданных параметрах должно быть равно 0. Если положить  $f_1=0$, тогда предельное значение ошибки будет равно $-f_2$, то есть -1.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{3vyh.eps}
+    \caption{Переходные характеристики системы при влиянии внешних возмущений}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{3osh.eps}
+    \caption{Переходные характеристики для ошибки}
+\end{figure}
+
+\newpage
+\begin{center}
+\section{Исследование установившейся ошибки при произвольном входном воздействии}
+\end{center}\par
+ Структурная схема представлена на рисунке 1, где $H(s) = 1, W(s) = \displaystyle{\frac{1.5}{0.5s + 1}}$, а задающее воздействие $g(t) = 0.5t + 2\cos{0.1t}$.
+ В ходе моделирования заданной системы (рисунок 15) был получен график переходного процесса, представленный на рисунке 16. Из него видно, что предельное значение ошибки стремится к $\infty$. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{cxema4.png}
+    \caption{Структурная схема системы при произвольном входном воздействии}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{4vyh.eps}
+    \caption{Переходной процесс в замкнутой системе при произвольном входном воздействии}
+\end{figure}
+Получим приближенное аналитическое выражение для установившейся ошибки слежения путём разложения в ряд Тейлора передаточную функцию замкнутой системы по ошибке слежения.
+Передаточная функция замкнутой системы по ошибке слежения выглядит так:
+\begin{equation}
+   \Phi_e(s) = \frac{1}{1 + W(s)} = \frac{1}{1 + \displaystyle{\frac{1.5}{0.5s + 1}}} = \frac{0.5s+1}{0.5s+2.5}.
+\end{equation}\par
+При произвольном входном воздействии выражение установившейся ошибки будет выглядеть следующим образом:
+\begin{equation}
+    e_y(t) = \Phi_e(s)|_{s=0}g(t) + \left.\frac{d\Phi_e(s)}{ds}\right|_{s=0}\dot{g}(t) + \left.\frac{d^2\Phi_e(s)}{ds^2}\right|_{s=0}\frac{\ddot{g}(t)}{2!}.
+\end{equation}\par
+Найдём производные $g(t)$ и $\Phi_e(s)$:
+\begin{align*}
+    g(t) & = 0.5t + 2\cos{(0.1t)} & \Phi_e(s)|_{s=0} & = \frac{0.5s+1}{0.5s+2.5} = 0.4 \\
+    \dot{g}(t) & = 0.5 - 0.2\sin{(0.1t)} & \left.\frac{d\Phi_e(s)}{ds}\right|_{s=0} & = \frac{3}{(s+5)^2} = 0.12 \\
+    \ddot{g}(t) & = - 0.02\cos{(0.1t)} & \left.\frac{d^2\Phi_e(s)}{ds^2}\right|_{s=0} & = \frac{2s+4}{(s+5)^3} - \frac{2}{(s+5)^2} = -0.048 \\
+\end{align*}\par
+Тогда получаем выражение ошибки $e_y(t)$:
+\begin{equation}
+e_y(t) = 0.2t+2\cos(0.1t)+0.06-0.024\sin(0.1t)+0.00096\cos(0.1t).
+\end{equation}\par
+Убедимся, что графики расчетной и экспериментально определённой установившейся ошибки слежения совпадают для этого построим их на одном графике, представленном на рисунке 17.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{4osh.png}
+    \caption{Графики ошибок}
+\end{figure}
+
+\newpage
+\section*{Вывод}
+В ходе лабораторной работы были исследованы системы с разным порядком астатизма, при влиянии внешних возмущений и при произвольном входном воздействии. Были построены переходные характеристики для всех случаев и найдены значения установившихся ошибок. Данные исследования позволяют сделать вывод о том что, установившееся значение ошибки можно изменить путём увеличения или уменьшения общего коэффициента усиления разомкнутой системы, а также путём снижения или повышения порядка астатизма.\par
+Кроме того было показано, что порядок астатизма системы по задающему воздействию, в общем случае, не соответствует порядку астатизма по возмущению.\par
+Так же было получено приближенное аналитическое выражение для установившейся ошибки слежения системы при произвольном входном воздействии.
+
+\end{document}
