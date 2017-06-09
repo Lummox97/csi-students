@@ -1,0 +1,194 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T2A]{fontenc} %поддержка кириллицы
+\usepackage[utf8]{inputenc} %кодировка текста: koi8-r или utf8 в UNIX, cp1251 в Windows
+\usepackage[english,russian]{babel} 
+\usepackage[left=2cm,right=1.5cm,top=2cm,bottom=2cm]{geometry} 
+\usepackage{tabularx} 
+\usepackage{graphicx} 
+\usepackage{amsmath} %отображение математической нотации
+\usepackage{float}
+\usepackage{caption, subcaption} %подписи
+%\usepackage{array}
+%\usepackage{amsmath,booktabs}
+\usepackage{indentfirst}%отступ вначале параграфа
+\usepackage{threeparttable}
+\captionsetup[table]{labelsep = endash, singlelinecheck=false}
+\captionsetup[figure]{name = Рисунок, labelformat=simple, labelsep = endash}
+
+\begin{document}
+
+\include{title}
+
+\paragraph{Цель работы:}Изучение частотных характеристик типовых динамических звеньев и способов их построения.%*-без нумерации
+\paragraph{Исходные данные.}
+В данной работе частотные характеристики элементарных динамических звеньев (см. таблицу 1) строятся по точкам на основании данных, полученных экспериментально. В эксперименте исследуется реакция звена на синусоидальное входное воздействие $g(t) = g_m\sin{\omega t}$ с амплитудой входного сигнала $g_m=1$. При заданном значении частоты и амплитуды входного сигнала для определения точек частотной характеристики необходимо измерить значение амплитуды выходного сигнала $y_m$ и сдвиг фаз между входным и выходным сигналом в установившемся режиме $\psi$ (см. рисунок 1). Для определения значения фазы следует учитывать, что на полученных графиках по оси абсцисс отложено время. Значение фазы выходного сигнала в радианах можно рассчитать, используя формулу $\psi=\phi\omega$, где $\omega$ значение частоты входного сигнала в радианах. После соответствующей обработки эти данные дадут одну точку на частотной характеристике. Повторение таких измерений при различных значениях частоты входного сигнала даст массив точек по которым строятся частотные характеристики.
+\begin{table}[h!]
+	\renewcommand{\arraystretch}{1.8} %строки
+	\centering
+	\begin{threeparttable}
+	\caption{Исходные динамические звенья.}
+	\begin{tabular}{|c|c|}
+		\hline Тип звена & Передаточная функция\\
+		\hline Интегрирующее с замедлением & $W(s) = \displaystyle{\frac{k}{Ts^2 + s}}$ \\
+		\hline Изодромное & $W(s) = \displaystyle{\frac{k + Tsk}{s}}$ \\
+		\hline Консервативное & $W(s) = \displaystyle{\frac{k}{T^2s^2 + 1}}$ \\
+		\hline
+	\end{tabular}
+	\end{threeparttable}
+\end{table} 
+\parПараметры исследуемых звеньев: k=10, T=2\par
+Сопрягающая частота $\frac{1}{T}=0.5c^{-1}$
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{timedia.eps}
+	\caption{Временная диаграмма}
+\end{figure}
+
+\newpage
+\begin{center}
+\section{Интегрирующее звено с замедлением}
+\end{center}
+
+В таблице 2 представлены данные при исследовании интегрирующего звена с замедлением.
+\begin{table}[h!]
+	\renewcommand{\arraystretch}{1.8} %строки
+	\centering
+	\begin{threeparttable}
+	\caption{Экспериментальные данные для интегрирующего звена с замедлением}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline $\omega$, рад/с & $lg\omega$ & $A(\omega)$ & $L(\omega)=20lgA(\omega)$ & $\psi(\omega)$, рад\\
+		\hline 0.05 & -1.3 & 199 & 45.98 & 1.67\\
+		\hline 0.1 & -1 & 98.06 & 39.83 & 1.76\\
+		\hline 0.3 & -0.52 & 28.58 & 29.12 & 2.1\\
+		\hline 0.5 & -0.30 & 14.14 & 23 & 2.35\\
+		\hline 0.9 & -0.05 & 5.4 & 14.64 & 2.637\\
+		\hline 1.4 & 0.15 & 2.4 & 7.6 & 2.8\\
+		\hline 2 & 0.3 & 1.21 & 1.66 & 2.9\\
+		\hline 2.8 & 0.45 & 0.62 & -4.15 & 2.968\\
+		\hline 3.8 & 0.58 & 0.34 & -9.37 & 3.04\\
+		\hline 5 & 0.7 & 0.22 & -13.15 & 3.05\\
+		\hline
+	\end{tabular}
+	\end{threeparttable}
+\end{table}
+
+На рисунках 2-7 представлены частотные характеристики.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{ACHH_intr.png}
+	\caption{АЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{FCHH_intr.png}
+	\caption{ФЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{LACHH1.png}
+	\caption{ЛАЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{LFCHH1.png}
+	\caption{ЛФЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Nyquist_intr.png}
+	\caption{АФЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Bode_intr.png}
+	\caption{Асимптотическая ЛАЧХ}
+\end{figure}
+
+\newpage
+\begin{center}
+\section{Изодромное звено}
+\end{center}
+
+В таблице 3 представлены данные при исследовании изодромного звена.
+\begin{table}[h!]
+	\renewcommand{\arraystretch}{1.8} %строки
+	\centering
+	\begin{threeparttable}
+	\caption{Экспериментальные данные для изодромного звена}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline $\omega$, рад/с & $lg\omega$ & $A(\omega)$ & $L(\omega)=20lgA(\omega)$ & $\psi(\omega)$, рад\\
+		\hline 0.05 & -1.3 & 201 & 46.06 & 1.47\\
+		\hline 0.1 & -1 & 101.98 & 40.17 & 1.37\\
+		\hline 0.3 & -0.52 & 38.87 & 31.79 & 1.02\\
+		\hline 0.5 & -0.3 & 28.28 & 29.03 & 0.75\\
+		\hline 0.9 & -0.05 & 22.88 & 27.19 & 0.5\\
+		\hline 1.4 & 0.15 & 21.24 & 26.54 & 0.336\\
+		\hline 2 & 0.3 & 20.62 & 26.29 & 0.24\\
+		\hline 2.8 & 0.45 & 20.32 & 26.16 & 0.17\\
+		\hline 3.8 & 0.58 & 20.17 & 26.09 & 0.15\\
+		\hline 5 & 0.7 & 20.1 & 26.06 & 0.1\\
+		\hline
+	\end{tabular}
+	\end{threeparttable}
+\end{table}
+
+На рисунках 8-13 представлены частотные характеристики изодромного звена.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{ACHH_izodr.png}
+	\caption{АЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\linewidth]{FCHH_izodr.png}
+	\caption{ФЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\linewidth]{LACHH_izodr.png}
+	\caption{ЛАЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\linewidth]{LFCHH_izodr.png}
+	\caption{ЛФЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Nyquist_izodr.png}
+	\caption{АФЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Bode_izodr.png}
+	\caption{Асимптотическая ЛАЧХ}
+\end{figure}
+
+\newpage
+\begin{center}
+\section{Консервативное звено}
+\end{center}
+
+К сожалению, из-за собственных колебаний консервативного звена, снять эксперементальные данные для него не удалось.
+
+На рисунках 14-15 представлены теоретические графики для консервативного звена.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Nyquist_kons.png}
+	\caption{АФЧХ}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Bode_kons.png}
+	\caption{Асимптотическая ЛАЧХ}
+\end{figure}
+
+\newpage
+\section*{Вывод}
+В ходе лабораторной работы были изучены частотные и логарифмические частотные характеристики типовых динамических звеньев: интегрирующего с замедлением, изодромного и консервативного.
+Основываясь на экспериментальных данных можно говорить о том, что фазовый сдвиг для интегрирующего звена с замедлением изменяется в пределах от $1.5 рад$ до $3 рад$, для изодромного --- от $0.1 рад$ до $1.47 рад$, а для консервативного звена таких данных получено не было.\par
+Сравнивая графики ЛАЧХ и асимптотической ЛАЧХ, можно заметить, что асимптотическая ЛАЧХ интегрирующего звена с замедлением сходится к реальной ЛАЧХ, а ЛАЧХ изодромного звена отличается от асимптотической ЛАЧХ.\par
+Также можно сделать вывод о том, что асимптотическая ЛАЧХ меняет свой наклон при частоте среза $\omega_c = 1/T$ и для её построения не требуется выполнения дополнительных вычислений, достаточно лишь знать вид передаточной функции.Также по асимптотический ЛАЧХ можно восстановить передаточную функцию.  
+\end{document}
